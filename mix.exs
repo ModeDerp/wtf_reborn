@@ -30,4 +30,9 @@ defmodule Pluggy.MixProject do
       {:slime, "~> 1.2"}
     ]
   end
+
+  def seed do
+    IO.puts("Hooray!")
+  end
+
 end
