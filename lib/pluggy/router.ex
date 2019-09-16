@@ -23,7 +23,7 @@ defmodule Pluggy.Router do
   plug(:dispatch)
 
   #Debug route
-  get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("Students/group", user: nil, group: %{name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
+  get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("students/group", user: nil, group: %{name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
 
   get("/students", do: StudentController.index(conn))
   get("/fruits/new", do: StudentController.new(conn))
