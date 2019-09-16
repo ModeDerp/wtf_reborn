@@ -1,0 +1,24 @@
+h1 Students.index (/students)
+= if user do
+	form action="/users/logout" method="post"
+        button type="submit" Log out
+- else
+    h3 Log in
+    form action="/users/login" method="post"
+        label for="username" Username
+        input type="text" name="username" id="username"
+        label for="password" Password
+        input type="password" name="pwd" id="password"
+        button type="submit" Log in
+    h3 Sign up
+    form action="/users/create" method="post"
+        label for="username" Username
+        input type="text" name="username" id="username"
+        label for="password" Password
+        input type="password" name="pwd" id="password"
+        button type="submit" Sign up
+ul
+    = for student <- students do
+        li
+    	    a href="/students/#{student.id}" #{student.first_name}
+a href="/students/new" Add new students

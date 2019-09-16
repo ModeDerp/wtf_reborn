@@ -1,7 +1,7 @@
-defmodule Pluggy.FruitController do
+defmodule Pluggy.StudentController do
   require IEx
 
-  alias Pluggy.Fruit
+  alias Pluggy.Student
   alias Pluggy.User
   import Pluggy.Template, only: [render: 2, srender: 2]
   import Plug.Conn, only: [send_resp: 3]
@@ -16,7 +16,7 @@ defmodule Pluggy.FruitController do
         _ -> User.get(session_user)
       end
 
-    send_resp(conn, 200, srender("fruits/index", fruits: Fruit.all(), user: current_user))
+    send_resp(conn, 200, srender("students/index", students: Student.all(), user: current_user))
   end
 
   def new(conn), do: send_resp(conn, 200, render("fruits/new", []))
