@@ -1,0 +1,26 @@
+css:
+    .edit {
+        color: green;
+    }
+    .edit:hover {
+        text-color: grey;
+    }
+
+.group_info
+    h1 Group = group.name
+    img src= group.img
+
+= if user do
+    = if user.permissions == 0 do
+        a href= #{"/group/edit/" <> group.id} Edit group
+    = else
+        p.edit style="" Edit group
+
+ul
+  = for student <- students do
+    li
+      a href="/student/#{student.id}" #{student.first_name <> " " <> student.last_name}
+
+
+
+/ Pluggy.Template.srender("Students/group", user: nil, group: %{name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}]) 
