@@ -1,0 +1,13 @@
+.group_info 
+    h1 Group = group.name
+    img src= group.img
+
+= if user do
+    = if user.permissions == 0
+        a href= #{"/group/edit/" <> group.id} 
+
+ul
+  = for student <- students do
+    li
+      a href="/student/#{student.id}" #{student.first_name <> " " <> student.last_name}
+
