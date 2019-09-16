@@ -1,20 +1,42 @@
 css:
-    .edit {
-        color: green;
+    /* .edit {
+    /     color: green;
+    / }
+    / .edit:hover {
+    /     color: grey;
+    */ }
+    .tooltip {
+        position: relative;
+        display: inline-block;
     }
-    .edit:hover {
-        text-color: grey;
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 200px;
+        background-color: white;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
     }
 
 .group_info
-    h1 Group = group.name
-    img src= group.img
+    h1 Group #{group.name}
+    img src= #{group.img}
 
 = if user do
     = if user.permissions == 0 do
-        a href= #{"/group/edit/" <> group.id} Edit group
+        a href="/group/edit/#{group.id}" Edit group
     = else
-        p.edit style="" Edit group
+        div.tooltip
+            div Edit group
+            div class="tooltiptext" Missing permission to edit group.
 
 ul
   = for student <- students do
