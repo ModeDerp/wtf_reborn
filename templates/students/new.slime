@@ -1,9 +1,5 @@
 h3 Create student
 form action="/students/create" method="post"
-    label for="group" group
-    select name="group" id="group"
-        = for group <- groups do
-            option value="#{group.id}" #{group.name}
     label for="first_name" First name
     input type="text" name="first_name" id="first_name"
     label for="last_name" Last name
