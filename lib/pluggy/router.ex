@@ -4,6 +4,7 @@ defmodule Pluggy.Router do
   alias Pluggy.StudentController
   alias Pluggy.UserController
   alias Pluggy.GroupController
+  alias Pluggy.User
 
   plug(Plug.Static, at: "/", from: :pluggy)
   plug(:put_secret_key_base)
@@ -28,12 +29,14 @@ defmodule Pluggy.Router do
 
   get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new")))
 
-  get("/students", do: StudentController.index(conn))
+
+  get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
+  get("/students", do: handleRequest(conn, &StudentController.index/1))
+  get("/students/:id", do: StudentController.show(conn, id))
+  get("/students/new", do: StudentController.new(conn))
+  get("/students/:id/edit", do: StudentController.edit(conn, id))
 
   get("/group/:id", do: GroupController.index(conn, conn.body_params))
-  get("/fruits/:id", do: StudentController.show(conn, id))
-  get("/students/new", do: StudentController.new(conn))
-  get("/fruits/:id/edit", do: StudentController.edit(conn, id))
 
   # should be put /fruits/:id, but put/patch/delete are not supported without hidden inputs
 
@@ -49,6 +52,24 @@ defmodule Pluggy.Router do
 
   match _ do
     send_resp(conn, 404, "oops")
+  end
+
+  defp handleRequest(conn, f) do
+    case authorize(conn) do
+      nil -> send_resp(conn, 200, Pluggy.Template.srender("users/login"))
+      _ -> f.(conn)
+    end
+
+  end
+
+  defp authorize(conn) do
+    # get user if logged in
+    session_user = conn.private.plug_session["user_id"]
+
+    case session_user do
+      nil -> nil
+      _ -> User.get(session_user)
+    end
   end
 
   defp put_secret_key_base(conn, _) do
