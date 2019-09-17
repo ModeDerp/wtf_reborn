@@ -30,6 +30,7 @@ defmodule Pluggy.Router do
   get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new")))
 
   get("/groups", do: GroupController.index(conn))
+  get("/groups/new", do: GroupController.new(conn))
   get("/group/:id", do: GroupController.show(conn, id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
@@ -40,6 +41,8 @@ defmodule Pluggy.Router do
 
   # should be put /fruits/:id, but put/patch/delete are not supported without hidden inputs
 
+
+  post("/groups/create", do: GroupController.create(conn, conn.body_params))
   post("/students/create", do: StudentController.create(conn, conn.body_params))
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
 
