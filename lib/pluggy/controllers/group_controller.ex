@@ -17,6 +17,9 @@ defmodule Pluggy.GroupController do
         _ -> User.get(session_user)
       end
 
-    send_resp(conn, 200, srender("students/group", group: Group.get(params["id"]), students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])) #srender("students/group", group: Group.get(params["id"]), user: current_user, students: Group.get_students(params["id"])))
+
+      #send_resp(conn, 200, srender("groups/group", user: %{id: 0, username: "", permissions: 0}, group: %Group{id: 0, name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}]))
+      send_resp(conn, 200, srender("groups/group", user: current_user, group: Group.get(params["id"]), students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}]))
+      #send_resp(conn, 200, srender("students/group", group: Group.get(params["id"]), user: current_user, students: Group.get_students(params["id"])))
   end
 end
