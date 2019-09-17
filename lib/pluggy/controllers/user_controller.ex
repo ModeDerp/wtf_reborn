@@ -14,7 +14,7 @@ defmodule Pluggy.UserController do
     case result.num_rows do
       # no user with that username
       0 ->
-        redirect(conn, "/students")
+        redirect(conn, "/fruits")
 
       # user with that username exists
       _ ->
@@ -23,25 +23,25 @@ defmodule Pluggy.UserController do
         # make sure password is correct
         if Bcrypt.verify_pass(password, password_hash) do
           Plug.Conn.put_session(conn, :user_id, id)
-          |> redirect("/students")
+          |> redirect("/fruits")
         else
-          redirect(conn, "/students")
+          redirect(conn, "/fruits")
         end
     end
   end
 
   def logout(conn) do
     Plug.Conn.configure_session(conn, drop: true)
-    |> redirect("/students")
+    |> redirect("/fruits")
   end
 
-  def create(conn, params) do
-  	# pseudocode
-  	# in db table users with password_hash CHAR(60)
-  	hashed_password = Bcrypt.hash_pwd_salt(params["pwd"])
-   	Postgrex.query!(DB, "INSERT INTO users (username, password_hash, permissions) VALUES ($1, $2, $3)", [params["username"], hashed_password, 3], [pool: DBConnection.Poolboy])
-   	redirect(conn, "/students")
-  end
+  # def create(conn, params) do
+  # 	#pseudocode
+  # 	# in db table users with password_hash CHAR(60)
+  # 	# hashed_password = Bcrypt.hash_pwd_salt(params["password"])
+  #  	# Postgrex.query!(DB, "INSERT INTO users (username, password_hash) VALUES ($1, $2)", [params["username"], hashed_password], [pool: DBConnection.Poolboy])
+  #  	# redirect(conn, "/fruits")
+  # end
 
   defp redirect(conn, url),
     do: Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(303, "")

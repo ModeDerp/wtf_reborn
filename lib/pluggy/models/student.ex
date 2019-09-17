@@ -8,6 +8,17 @@ defmodule Pluggy.Student do
     |> to_struct_list
   end
 
+  def create(params) do
+    first_name = params["first_name"]
+    last_name = params["last_name"]
+    about = params["about"]
+    img = params["img"]
+
+    Postgrex.query!(DB, "INSERT INTO students (first_name, last_name, about, img) VALUES ($1, $2, $3, $4)", [first_name, last_name, about, img],
+      pool: DBConnection.Poolboy
+    )
+  end
+
   @spec get(any) :: Pluggy.Student.t()
   def get(id) do
     Postgrex.query!(DB, "SELECT * FROM students WHERE id = $1 LIMIT 1", [String.to_integer(id)],
