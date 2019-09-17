@@ -25,6 +25,8 @@ defmodule Pluggy.Router do
   #Debug route
   get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("Students/group", user: nil, group: %{name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
 
+  get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new", groups: [%{id: 1, name: "1A"}, %{id: 2, name: "2A"}])))
+
   get("/students", do: StudentController.index(conn))
   get("/fruits/new", do: StudentController.new(conn))
   get("/fruits/:id", do: StudentController.show(conn, id))
