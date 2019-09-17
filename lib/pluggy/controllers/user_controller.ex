@@ -36,10 +36,10 @@ defmodule Pluggy.UserController do
   end
 
   def create(conn, params) do
-  	# pseudocode
+  	#pseudocode
   	# in db table users with password_hash CHAR(60)
-  	hashed_password = Bcrypt.hash_pwd_salt(params["pwd"])
-   	Postgrex.query!(DB, "INSERT INTO users (username, password_hash, permissions) VALUES ($1, $2, $3)", [params["username"], hashed_password, 3], [pool: DBConnection.Poolboy])
+  	hashed_password = Bcrypt.hash_pwd_salt(params["password"])
+   	Postgrex.query!(DB, "INSERT INTO users (username, password_hash, permission) VALUES ($1, $2, $3)", [params["username"], hashed_password, 0], [pool: DBConnection.Poolboy])
    	redirect(conn, "/students")
   end
 
