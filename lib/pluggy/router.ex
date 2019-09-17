@@ -26,6 +26,8 @@ defmodule Pluggy.Router do
   #Debug route
   get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("students/group", user: %{permissions: 0}, group: %{id: 0, name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
 
+  get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new", groups: [%{id: 1, name: "1A"}, %{id: 2, name: "2A"}])))
+
   get("/students", do: StudentController.index(conn))
   get("/group/:id", do: GroupController.index(conn, conn.body_params))
   get("/fruits/new", do: StudentController.new(conn))
@@ -41,6 +43,7 @@ defmodule Pluggy.Router do
   post("/fruits/:id/destroy", do: StudentController.destroy(conn, id))
 
   post("/users/login", do: UserController.login(conn, conn.body_params))
+  post "/users/create", do: UserController.create(conn, conn.body_params)
   post("/users/logout", do: UserController.logout(conn))
 
   match _ do
