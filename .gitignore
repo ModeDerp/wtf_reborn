@@ -26,6 +26,3 @@ erl_crash.dump
 pluggy-*.tar
 
 .DS_Store
-
-minigenerate.ex
-safe_man.png
