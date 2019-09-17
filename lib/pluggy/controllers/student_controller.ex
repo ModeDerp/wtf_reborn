@@ -22,7 +22,7 @@ defmodule Pluggy.StudentController do
 
   def new(conn), do: send_resp(conn, 200, srender("students/new", []))
   # def show(conn, id), do: send_resp(conn, 200, srender("fruits/show", fruit: Fruit.get(id)))
-  # def edit(conn, id), do: send_resp(conn, 200, srender("fruits/edit", fruit: Fruit.get(id)))
+  def edit(conn, id), do: send_resp(conn, 200, srender("students/edit", student: Student.get(id)))
 
   def create(conn, params) do
     if params["first_name"] != "" && params["last_name"] != "" do
@@ -39,8 +39,8 @@ defmodule Pluggy.StudentController do
 
   @spec update(Plug.Conn.t(), any, any) :: Plug.Conn.t()
   def update(conn, id, params) do
-    Fruit.update(id, params)
-    redirect(conn, "/fruits")
+    Student.update(id, params)
+    redirect(conn, "/students")
   end
 
   def destroy(conn, id) do
