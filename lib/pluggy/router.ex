@@ -3,6 +3,7 @@ defmodule Pluggy.Router do
 
   alias Pluggy.StudentController
   alias Pluggy.UserController
+  alias Pluggy.GroupController
 
   plug(Plug.Static, at: "/", from: :pluggy)
   plug(:put_secret_key_base)
@@ -23,11 +24,13 @@ defmodule Pluggy.Router do
   plug(:dispatch)
 
   #Debug route
-  get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("Students/group", user: nil, group: %{name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
+  get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("students/group", user: %{permissions: 0}, group: %{id: 0, name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
 
   get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new")))
 
   get("/students", do: StudentController.index(conn))
+
+  get("/group/:id", do: GroupController.index(conn, conn.body_params))
   get("/fruits/:id", do: StudentController.show(conn, id))
   get("/students/new", do: StudentController.new(conn))
   get("/fruits/:id/edit", do: StudentController.edit(conn, id))

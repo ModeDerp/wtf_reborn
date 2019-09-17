@@ -37,3 +37,28 @@ html, body{
 	border: none;
 	background-color: rgb(173, 200, 230);
 }
+
+/** NAVIGATION */
+.navigation{
+	width: 100%;
+	height: 80px;
+	padding: 10px;
+	box-sizing: border-box;
+	display: flex;
+	background-color: lightskyblue;
+}
+
+.navigation h1{
+	height: 100%;
+	font-size: 3em;
+}
+
+.navigation form {
+	margin-left: auto;
+	height: 100%;
+}
+
+.navigation form button {
+	height: 100%;
+	width: 100px;
+}

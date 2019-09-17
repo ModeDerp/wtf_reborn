@@ -1,8 +1,11 @@
+div class="navigation"
+    h1 What's Their Face
+    = if user do
+        form class="logout" action="/users/logout" method="post"
+            button type="submit" Log out
+
 h1 Students.index (/students)
-= if user do
-	form action="/users/logout" method="post"
-        button type="submit" Log out
-- else
+= if !user do
     h3 Log in
     form action="/users/login" method="post"
         label for="username" Username
