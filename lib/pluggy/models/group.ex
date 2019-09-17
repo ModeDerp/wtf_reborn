@@ -11,6 +11,7 @@ defmodule Pluggy.Group do
   end
 
   def get(id) do
+    IO.inspect(id)
     Postgrex.query!(DB, "SELECT * FROM groups WHERE id = $1 LIMIT 1", [id],
       pool: DBConnection.Poolboy
     ).rows

@@ -29,6 +29,9 @@ defmodule Pluggy.Router do
 
   get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new")))
 
+  get("/fruits/new", do: StudentController.new(conn))
+  get("/groups", do: GroupController.index(conn))
+  get("/group/:id", do: GroupController.show(conn, id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
   get("/students", do: handleRequest(conn, &StudentController.index/1))
