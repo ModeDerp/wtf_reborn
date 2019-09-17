@@ -1,0 +1,7 @@
+h3 Sign up
+form action="/users/create" method="post"
+    label for="username" Username
+    input type="text" name="username" id="username"
+    label for="password" Password
+    input type="password" name="pwd" id="password"
+    button type="submit" Sign up
