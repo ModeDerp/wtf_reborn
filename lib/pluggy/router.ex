@@ -29,10 +29,11 @@ defmodule Pluggy.Router do
   get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new", groups: [%{id: 1, name: "1A"}, %{id: 2, name: "2A"}])))
 
   get("/students", do: StudentController.index(conn))
-  get("/group/:id", do: GroupController.index(conn, conn.body_params))
   get("/fruits/new", do: StudentController.new(conn))
   get("/fruits/:id", do: StudentController.show(conn, id))
   get("/fruits/:id/edit", do: StudentController.edit(conn, id))
+  get("/groups", do: GroupController.index(conn))
+  get("/group/:id", do: GroupController.show(conn, id))
 
   post("/fruits", do: StudentController.create(conn, conn.body_params))
 
