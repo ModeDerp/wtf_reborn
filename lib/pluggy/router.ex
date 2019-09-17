@@ -39,6 +39,7 @@ defmodule Pluggy.Router do
   post("/fruits/:id/destroy", do: StudentController.destroy(conn, id))
 
   post("/users/login", do: UserController.login(conn, conn.body_params))
+  post "/users/create", do: UserController.create(conn, conn.body_params)
   post("/users/logout", do: UserController.logout(conn))
 
   match _ do
