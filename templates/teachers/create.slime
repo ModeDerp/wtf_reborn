@@ -1,0 +1,7 @@
+h3 Create teacher account
+form action="/teachers/create" method="post"
+    label for="username" Username
+    input type="text" name="username" id="username"
+    label for="password" Password
+    input type="password" name="pwd" id="password"
+    button type="submit" Create
