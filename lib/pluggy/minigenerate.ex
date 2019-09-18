@@ -7,5 +7,10 @@ defmodule Pluggy.Minigenerate do
 
     Postgrex.query!(DB, "INSERT INTO groups(name, img, about) VALUES($1, $2, $3)", ["Safely endangered people", "/i_have_friends.png", "A fun group of people"], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO groups(name, img, about) VALUES($1, $2, $3)", ["Boring old rags", "", "Pffft, they couldn't even afford an image... pity"], pool: DBConnection.Poolboy)
+
+    Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [1, 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [2, 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [3, 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [4, 1], pool: DBConnection.Poolboy)
   end
 end

@@ -1,14 +1,14 @@
 css:
-    /* .edit {
-    /     color: green;
-    / }
-    / .edit:hover {
-    /     color: grey;
-    */ }
+    /*.edit {
+        color: green;
+    }
+    .edit:hover {
+        color: grey;
+    }
     .tooltip {
         position: relative;
         display: inline-block;
-    }
+    }*/
     /* Tooltip text */
     .tooltip .tooltiptext {
         visibility: hidden;
