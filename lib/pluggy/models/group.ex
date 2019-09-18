@@ -11,6 +11,16 @@ defmodule Pluggy.Group do
     |> to_struct_list
   end
 
+  def create(params) do
+    _school_id = params["school_id"]
+    name = params["name"]
+    img = params["img"]
+    about = params["about"]
+
+    Postgrex.query!(DB, "INSERT INTO groups(name, img, about) VALUES($1, $2, $3)", [name, img, about], # TODO: Insert school id
+      pool: DBConnection.Poolboy).rows
+  end
+
   def get(id) do
     Postgrex.query!(DB, "SELECT * FROM groups WHERE id = $1 LIMIT 1", [id],
       pool: DBConnection.Poolboy

@@ -37,6 +37,8 @@ css:
             div.tooltip
                 div Edit group
                 div class="tooltiptext" Missing permission to edit group.
+        br
+        br
 - else  
     .group_info
         h1 No group selected
