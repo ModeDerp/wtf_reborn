@@ -18,7 +18,17 @@ defmodule Pluggy.Group do
     about = params["about"]
 
     Postgrex.query!(DB, "INSERT INTO groups(name, img, about) VALUES($1, $2, $3)", [name, img, about], # TODO: Insert school id
-      pool: DBConnection.Poolboy).rows
+      pool: DBConnection.Poolboy)
+  end
+
+  def remove([]), do: {:ok, "Successfully deleted all groups"}
+  def remove([head | tail]) do
+    remove(head)
+    remove(tail)
+  end
+  def remove(id) do
+    Postgrex.query!(DB, "DELETE FROM groups WHERE id = $1", [id],
+      pool: DBConnection.Poolboy)
   end
 
   def get(id) do
