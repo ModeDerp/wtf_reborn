@@ -12,5 +12,8 @@ defmodule Pluggy.Minigenerate do
     Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [2, 1], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [3, 1], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [4, 1], pool: DBConnection.Poolboy)
+
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Daniel", Bcrypt.hash_pwd_salt("123"), 0], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Bengt", Bcrypt.hash_pwd_salt("123"), 1], pool: DBConnection.Poolboy)
   end
 end
