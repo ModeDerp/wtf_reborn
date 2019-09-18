@@ -27,30 +27,32 @@ html, body{
 	width: 300px;
 	height: 40px;
 	border-radius: 10px;
-	border: 0.125rem solid rgb(173, 200, 230);
-	background-color: rgb(236, 251, 255);
+	border: 0.15rem solid #E6EFFE;
+	background-color: #F2F9FF;
 	font-size: 1.25em;
 	box-sizing: border-box;
 }
 
 .login button{
 	border: none;
-	background-color: rgb(173, 200, 230);
+	background-color: #F2F9FF;
 }
 
 /** NAVIGATION */
 .navigation{
 	width: 100%;
 	height: 80px;
-	padding: 10px;
+	padding: 20px;
 	box-sizing: border-box;
 	display: flex;
-	background-color: lightskyblue;
+	background-color: #4899F3;
 }
 
 .navigation h1{
 	height: 100%;
 	font-size: 3em;
+	color: white;
+	font-family: sans-serif;
 }
 
 .navigation form {
