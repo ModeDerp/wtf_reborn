@@ -32,7 +32,7 @@ css:
         img src= #{group.img}
     = if user do
         = if user.permissions == 0 do
-            a href="/group/edit/#{group.id}" Edit group
+            a href="/groups/#{group.id}/edit" Edit group
         - else
             div.tooltip
                 div Edit group

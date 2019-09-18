@@ -21,6 +21,20 @@ defmodule Pluggy.Group do
       pool: DBConnection.Poolboy)
   end
 
+  def update(id, params) do
+    name = params["name"]
+    about = params["about"]
+    _img = params["img"]
+    id = String.to_integer(id)
+
+    Postgrex.query!(
+      DB,
+      "UPDATE groups SET name = $1, about = $2 WHERE id = $3",
+      [name, about, id],
+      pool: DBConnection.Poolboy
+    )
+  end
+
   def remove([]), do: {:ok, "Successfully deleted all groups"}
   def remove([head | tail]) do
     remove(head)
