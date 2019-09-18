@@ -1,5 +1,27 @@
-h1 Groups.index (/groups)
-ul
-  = for group <- groups do
-    li
-      a href="/group/#{group.id}" #{group.name}
+div class="navigation"
+    h1 What's Their Face
+    = if user do
+        form class="logout" action="/users/logout" method="post"
+            button type="submit" Log out
+
+= if user.permissions == 0 do
+  div class="groups"
+    = for group <- groups do
+      div
+        div class="group-name"
+          a href="/group/#{group.id}" #{group.name}
+        div class="group-controls"
+          a href="/group/#{group.id}/edit" EDIT
+          form action="/group/#{group.id}/destroy"
+            button type="submit" DELETE
+    .group-add
+      a href="/groups/new" NEW
+- else
+  div class="groups"
+    = for group <- groups do
+      div
+        div class="group-name"
+          a href="/group/#{group.id}" #{group.name}
+        div class="group-controls"
+          a href="/group/#{group.id}" SHOW
+          a href="#" PRACTICE
