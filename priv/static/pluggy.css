@@ -56,14 +56,33 @@ html, body{
 	font-family: sans-serif;
 }
 
-.navigation form {
+.logout {
 	margin-left: auto;
 	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.navigation form button {
+.logout span{
+	color: #4899F3;
+	padding: 10px;
+	font-size: 1.25em;
+	margin-right: 20px;
+	background-color: white;
+}
+
+.logout button {
 	height: 100%;
 	width: 100px;
+	background-color: #4899F3;
+	border: none;
+	color: white;
+	font-size: 1.25em;
+}
+
+.logout button:hover{
+	cursor: pointer;
 }
 
 /** GROUPS **/
