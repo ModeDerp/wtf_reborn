@@ -43,11 +43,13 @@ defmodule Pluggy.GroupController do
         nil -> nil
         _ -> User.get(session_user)
       end
-      id |> IO.inspect
+    group_struct = Group.get(String.to_integer(id))
+    student_structs = Group.get_students(Group.get(String.to_integer(id)))
+    IO.inspect(current_user)
+    IO.inspect(group_struct)
+    IO.inspect(student_structs)
 
-      #send_resp(conn, 200, srender("groups/group", user: %{id: 0, username: "", permissions: 0}, group: %Group{id: 0, name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}]))
-      send_resp(conn, 200, srender("groups/group", user: current_user, group: Group.get(String.to_integer(id)), students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}]))
-      #send_resp(conn, 200, srender("students/group", group: Group.get(params["id"]), user: current_user, students: Group.get_students(params["id"])))
+    send_resp(conn, 200, srender("groups/group", group: group_struct, user: current_user, students: student_structs))
   end
 
   defp redirect(conn, url) do
