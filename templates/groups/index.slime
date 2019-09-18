@@ -11,8 +11,8 @@ div class="navigation"
         div class="group-name"
           a href="/group/#{group.id}" #{group.name}
         div class="group-controls"
-          a href="/group/#{group.id}/edit" EDIT
-          form action="/group/#{group.id}/destroy"
+          a href="/groups/#{group.id}/edit" EDIT
+          form action="/groups/#{group.id}/destroy"
             button type="submit" DELETE
     .group-add
       a href="/groups/new" NEW
