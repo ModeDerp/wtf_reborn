@@ -25,6 +25,11 @@ defmodule Pluggy.GroupController do
     redirect(conn, "/groups/#{group_id}")
   end
 
+  def destroy_students(conn, group_id, student_id) do
+    Group.destroy_students(group_id, student_id)
+    redirect(conn, "/groups/#{group_id}")
+  end
+
   def create(conn, params) do
     if params["name"] != "" do
       params |> Group.create
