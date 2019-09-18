@@ -35,6 +35,18 @@ defmodule Pluggy.Group do
     )
   end
 
+  def add_students(group_id, params) do
+    student = String.to_integer(params["student_id"])
+    group = String.to_integer(group_id)
+
+    Postgrex.query!(
+      DB,
+      "INSERT INTO student_group_relations (student_id, group_id) VALUES ($1, $2)",
+      [student, group],
+      pool: DBConnection.Poolboy
+    )
+  end
+
   def remove([]), do: {:ok, "Successfully deleted all groups"}
   def remove([head | tail]) do
     remove(head)

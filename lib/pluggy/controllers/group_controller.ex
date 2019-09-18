@@ -30,6 +30,11 @@ defmodule Pluggy.GroupController do
     redirect(conn, "/groups")
   end
 
+  def add_students(conn, group_id, params) do
+    Group.add_students(group_id, params)
+    redirect(conn, "/group/#{group_id}")
+  end
+
   def create(conn, params) do
     if params["name"] != "" do
       params |> Group.create

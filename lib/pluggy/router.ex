@@ -44,7 +44,7 @@ defmodule Pluggy.Router do
 
   # should be put /fruits/:id, but put/patch/delete are not supported without hidden inputs
 
-
+  post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/groups/create", do: GroupController.create(conn, conn.body_params))
   post("/students/create", do: StudentController.create(conn, conn.body_params))
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
