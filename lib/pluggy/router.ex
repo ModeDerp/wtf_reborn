@@ -32,6 +32,7 @@ defmodule Pluggy.Router do
   get("/groups", do: GroupController.index(conn))
   get("/groups/new", do: GroupController.new(conn))
   get("/group/:id", do: GroupController.show(conn, id))
+  get("/groups/:id/edit", do: GroupController.edit(conn, id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
   get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
@@ -46,6 +47,7 @@ defmodule Pluggy.Router do
   post("/groups/create", do: GroupController.create(conn, conn.body_params))
   post("/students/create", do: StudentController.create(conn, conn.body_params))
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
+  post("/groups/:id/edit", do: GroupController.update(conn, id, conn.body_params))
 
   # should be delete /fruits/:id, but put/patch/delete are not supported without hidden inputs
   post("/students/:id/destroy", do: StudentController.destroy(conn, id))

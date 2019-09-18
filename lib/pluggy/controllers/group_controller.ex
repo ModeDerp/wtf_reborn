@@ -21,6 +21,8 @@ defmodule Pluggy.GroupController do
 
   def new(conn), do: send_resp(conn, 200, srender("groups/new", []))
 
+  def edit(conn, id), do: send_resp(conn, 200, srender("groups/edit", group: Group.get(id)))
+
   def create(conn, params) do
     if params["name"] != "" do
       params |> Group.create
