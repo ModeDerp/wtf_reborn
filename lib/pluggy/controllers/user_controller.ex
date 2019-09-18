@@ -2,6 +2,9 @@ defmodule Pluggy.UserController do
   # import Pluggy.Template, only: [render: 2]
   import Plug.Conn, only: [send_resp: 3]
 
+  def new_teacher(conn), do: send_resp(conn, 200, Pluggy.Template.srender("teachers/new"))
+
+
   def login(conn, params) do
     username = params["username"]
     password = params["pwd"]
@@ -35,11 +38,11 @@ defmodule Pluggy.UserController do
     |> redirect("/students")
   end
 
-  def create(conn, params) do
+  def create(conn, params, permission) do
   	#pseudocode
   	# in db table users with password_hash CHAR(60)
   	hashed_password = Bcrypt.hash_pwd_salt(params["password"])
-   	Postgrex.query!(DB, "INSERT INTO users (username, password_hash, permission) VALUES ($1, $2, $3)", [params["username"], hashed_password, 0], [pool: DBConnection.Poolboy])
+   	Postgrex.query!(DB, "INSERT INTO users (username, password_hash, permissions) VALUES ($1, $2, $3)", [params["username"], hashed_password, permission], [pool: DBConnection.Poolboy])
    	redirect(conn, "/students")
   end
 

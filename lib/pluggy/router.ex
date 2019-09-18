@@ -38,6 +38,7 @@ defmodule Pluggy.Router do
   get("/students/new", do: StudentController.new(conn))
   get("/students/:id", do: StudentController.show(conn, id))
   get("/students/:id/edit", do: StudentController.edit(conn, id))
+  get("/teachers/new", do: UserController.new_teacher(conn))
 
   # should be put /fruits/:id, but put/patch/delete are not supported without hidden inputs
 
@@ -50,7 +51,8 @@ defmodule Pluggy.Router do
   post("/students/:id/destroy", do: StudentController.destroy(conn, id))
 
   post("/users/login", do: UserController.login(conn, conn.body_params))
-  post "/users/create", do: UserController.create(conn, conn.body_params)
+  post "/users/create", do: UserController.create(conn, conn.body_params, 0)
+  post("/teachers/create", do: UserController.create(conn, conn.body_params, 1))
   post("/users/logout", do: UserController.logout(conn))
 
   match _ do
