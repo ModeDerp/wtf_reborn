@@ -1,0 +1,7 @@
+h1 Students
+p Choose a student to add to group
+form action="/groups/#{group.id}/add" method="post"
+    select name="student_id"
+        = for student <- students do
+            option value="#{student.id}" #{student.first_name}
+    button type="submit" Add
