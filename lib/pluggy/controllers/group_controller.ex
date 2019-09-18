@@ -23,6 +23,8 @@ defmodule Pluggy.GroupController do
 
   def edit(conn, id), do: send_resp(conn, 200, srender("groups/edit", group: Group.get(String.to_integer(id))))
 
+  def add(conn, id), do: send_resp(conn, 200, srender("groups/add", students: Student.all(), group: Group.get(String.to_integer(id))))
+
   def update(conn, id, params) do
     Group.update(id, params)
     redirect(conn, "/groups")

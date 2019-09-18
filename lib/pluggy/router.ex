@@ -33,6 +33,7 @@ defmodule Pluggy.Router do
   get("/groups/new", do: GroupController.new(conn))
   get("/group/:id", do: GroupController.show(conn, id))
   get("/groups/:id/edit", do: GroupController.edit(conn, id))
+  get("/groups/:id/add", do: GroupController.add(conn,id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
   get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
