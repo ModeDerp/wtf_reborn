@@ -24,25 +24,26 @@ defmodule Pluggy.Router do
   plug(:match)
   plug(:dispatch)
 
-  #Debug route
-  get("/testing", do: send_resp(conn, 200, Pluggy.Template.srender("students/group", user: %{permissions: 0}, group: %{id: 0, name: "3B", img: "dank/img.png"}, students: [%{id: 10, first_name: "Daniel", last_name: "Kull"}])))
+  get("/") do
+    if getUser(conn) do
+      handleRequest(conn, &GroupController.index/1)
+    else
+      redirect(conn, "/login")
+    end
+  end
 
-  get("/test", do: send_resp(conn, 200, Pluggy.Template.srender("students/new")))
-
-  get("/groups", do: GroupController.index(conn))
-  get("/groups/new", do: GroupController.new(conn))
-  get("/group/:id", do: GroupController.show(conn, id))
+  get("/groups", do: handleRequest(conn, &GroupController.index/1))
+  get("/groups/new", do: handleRequest(conn, &GroupController.new/1))
+  get("/groups/:id", do: GroupController.show(conn, id))
   get("/groups/:id/edit", do: GroupController.edit(conn, id))
-  get("/groups/:id/add", do: GroupController.add(conn,id))
+  get("/groups/:id/students/add", do: GroupController.add(conn,id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
-  get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
+  # get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
   get("/students/new", do: StudentController.new(conn))
-  get("/students/:id", do: StudentController.show(conn, id))
+  # get("/students/:id", do: StudentController.show(conn, id))
   get("/students/:id/edit", do: StudentController.edit(conn, id))
   get("/teachers/new", do: UserController.new_teacher(conn))
-
-  # should be put /fruits/:id, but put/patch/delete are not supported without hidden inputs
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/groups/create", do: GroupController.create(conn, conn.body_params))
@@ -50,7 +51,6 @@ defmodule Pluggy.Router do
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
   post("/groups/:id/edit", do: GroupController.update(conn, id, conn.body_params))
 
-  # should be delete /fruits/:id, but put/patch/delete are not supported without hidden inputs
   post("/students/:id/destroy", do: StudentController.destroy(conn, id))
 
   post("/users/login", do: UserController.login(conn, conn.body_params))
@@ -62,12 +62,15 @@ defmodule Pluggy.Router do
     send_resp(conn, 404, "oops")
   end
 
-  defp handleRequest(conn, f, req_perm) do
-    user = authorize(conn)
-    IO.inspect(user)
+  defp handleRequest(conn, f, req_perm \\ nil) do
+    user = getUser(conn)
     case user do
       nil -> send_resp(conn, 200, Pluggy.Template.srender("users/login"))
-      _ -> permissions(conn, f, req_perm, user)
+      _ ->  if req_perm == nil do
+              f.(conn)
+            else
+              permissions(conn, f, req_perm, user)
+            end
     end
   end
 
@@ -79,13 +82,17 @@ defmodule Pluggy.Router do
     end
   end
 
-  defp authorize(conn) do
+  defp getUser(conn) do
     # get user if logged in
     session_user = conn.private.plug_session["user_id"]
     case session_user do
       nil -> nil
       _ -> User.get(session_user)
     end
+  end
+
+  defp redirect(conn, url) do
+    Plug.Conn.put_resp_header(conn, "location", url) |> send_resp(303, "")
   end
 
   defp put_secret_key_base(conn, _) do
