@@ -2,6 +2,7 @@ div class="navigation"
     h1 What's Their Face
     = if user do
         form class="logout" action="/users/logout" method="post"
+            span #{user.username}
             button type="submit" Log out
 
 = if user.permissions == 0 do
