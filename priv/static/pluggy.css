@@ -2,6 +2,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	font-family: sans-serif;
 }
 
 html, body{
@@ -63,4 +64,72 @@ html, body{
 .navigation form button {
 	height: 100%;
 	width: 100px;
+}
+
+/** Groups **/
+.groups{
+	margin: auto 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.groups > div{
+	width: 200px;
+	height: 200px;
+	background-color: #C2E0FA;
+	margin: 20px;
+}
+
+.group-name{
+	width: 100%;
+	height: 130px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.group-name > a{
+	color: white;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.group-controls{
+	width: 100%;
+	height: 70px;
+	background-color: #4899F3;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.group-controls > a{
+	color: white;
+	text-decoration: none;
+}
+
+.group-controls button{
+	color: white;
+	border: none;
+	background-color: #4899F3;
+	font-size: 1em;
+}
+
+.group-controls button:hover{
+	cursor: pointer;
+}
+
+.group-add{
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+.group-add a{
+	color: white;
+	text-decoration: none;
+	font-size: 2em;
 }
