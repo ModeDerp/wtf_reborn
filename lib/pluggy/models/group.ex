@@ -53,7 +53,7 @@ defmodule Pluggy.Group do
   end
 
   def get_students(%Group{id: id}) do
-    Postgrex.query!(DB, "SELECT students.id, first_name, last_name, students.about, students.img FROM groups JOIN student_group_relations ON group_id = groups.id JOIN students ON student_id = students.id WHERE groups.id = $1;", [id],
+    Postgrex.query!(DB, "SELECT students.id, first_name, last_name, students.img, students.about FROM groups JOIN student_group_relations ON group_id = groups.id JOIN students ON student_id = students.id WHERE groups.id = $1;", [id],
       pool: DBConnection.Poolboy
       ).rows
     |> Student.to_struct_list
