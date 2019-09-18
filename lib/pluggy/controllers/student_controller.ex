@@ -3,26 +3,14 @@ defmodule Pluggy.StudentController do
 
   alias Pluggy.Student
   alias Pluggy.User
-  import Pluggy.Template, only: [render: 2, srender: 2]
+  import Pluggy.Template, only: [srender: 2]
   import Plug.Conn, only: [send_resp: 3]
 
-  def index(conn) do
-    # get user if logged in
-    session_user = conn.private.plug_session["user_id"]
+  def index(conn), do: send_resp(conn, 200, srender("students/index", user: getUser(conn), students: Student.all()))
 
-
-    current_user =
-      case session_user do
-        nil -> nil
-        _ -> User.get(session_user)
-      end
-
-    send_resp(conn, 200, srender("students/index", students: Student.all(), user: current_user))
-  end
-
-  def new(conn), do: send_resp(conn, 200, srender("students/new", []))
+  def new(conn), do: send_resp(conn, 200, srender("students/new", user: getUser(conn)))
   # def show(conn, id), do: send_resp(conn, 200, srender("fruits/show", fruit: Fruit.get(id)))
-  def edit(conn, id), do: send_resp(conn, 200, srender("students/edit", student: Student.get(id)))
+  def edit(conn, id), do: send_resp(conn, 200, srender("students/edit", user: getUser(conn), student: Student.get(id)))
 
   def create(conn, params) do
     if params["first_name"] != "" && params["last_name"] != "" do
@@ -44,8 +32,17 @@ defmodule Pluggy.StudentController do
   end
 
   def destroy(conn, id) do
-    Fruit.delete(id)
+    Student.delete(id)
     redirect(conn, "/fruits")
+  end
+
+  defp getUser(conn) do
+    # get user if logged in
+    session_user = conn.private.plug_session["user_id"]
+    case session_user do
+      nil -> nil
+      _ -> User.get(session_user)
+    end
   end
 
   defp redirect(conn, url) do

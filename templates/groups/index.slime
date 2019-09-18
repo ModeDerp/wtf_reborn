@@ -10,7 +10,7 @@ div class="navigation"
     = for group <- groups do
       div
         div class="group-name"
-          a href="/group/#{group.id}" #{group.name}
+          a href="/groups/#{group.id}" #{group.name}
         div class="group-controls"
           a href="/groups/#{group.id}/edit" EDIT
           form action="/groups/#{group.id}/destroy"
@@ -22,7 +22,7 @@ div class="navigation"
     = for group <- groups do
       div
         div class="group-name"
-          a href="/group/#{group.id}" #{group.name}
+          a href="/groups/#{group.id}" #{group.name}
         div class="group-controls"
-          a href="/group/#{group.id}" SHOW
+          a href="/groups/#{group.id}" SHOW
           a href="#" PRACTICE

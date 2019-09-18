@@ -1,3 +1,10 @@
+div class="navigation"
+    h1 What's Their Face
+    = if user do
+        form class="logout" action="/users/logout" method="post"
+            span #{user.username}
+            button type="submit" Log out
+
 h3 Create group
 form action="/groups/create" method="post"
     label for="name" Name

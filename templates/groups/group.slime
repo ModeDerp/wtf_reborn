@@ -59,4 +59,4 @@ div class="navigation"
                         button type="submit" REMOVE
     = if user.permissions == 0 do
         .student-add
-            a href="/groups/new" NEW
+            a href="/groups/#{group.id}/students/add" NEW
