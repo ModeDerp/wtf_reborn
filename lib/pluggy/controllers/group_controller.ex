@@ -34,6 +34,6 @@ defmodule Pluggy.GroupController do
     IO.inspect(group_struct)
     IO.inspect(student_structs)
 
-    send_resp(conn, 200, srender("students/group", group: group_struct, user: current_user, students: student_structs))
+    send_resp(conn, 200, srender("groups/group", group: group_struct, user: current_user, students: student_structs))
   end
 end
