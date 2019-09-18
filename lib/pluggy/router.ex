@@ -34,7 +34,7 @@ defmodule Pluggy.Router do
   get("/group/:id", do: GroupController.show(conn, id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
-  get("/students", do: handleRequest(conn, &StudentController.index/1))
+  get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
   get("/students/new", do: StudentController.new(conn))
   get("/students/:id", do: StudentController.show(conn, id))
   get("/students/:id/edit", do: StudentController.edit(conn, id))
@@ -57,18 +57,26 @@ defmodule Pluggy.Router do
     send_resp(conn, 404, "oops")
   end
 
-  defp handleRequest(conn, f) do
-    case authorize(conn) do
+  defp handleRequest(conn, f, req_perm) do
+    user = authorize(conn)
+    IO.inspect(user)
+    case user do
       nil -> send_resp(conn, 200, Pluggy.Template.srender("users/login"))
-      _ -> f.(conn)
+      _ -> permissions(conn, f, req_perm, user)
     end
+  end
 
+  defp permissions(conn, f, req_perm, user) do
+    if user.permissions <= req_perm do
+      f.(conn)
+    else
+      send_resp(conn, 200, Pluggy.Template.srender("users/login"))
+    end
   end
 
   defp authorize(conn) do
     # get user if logged in
     session_user = conn.private.plug_session["user_id"]
-
     case session_user do
       nil -> nil
       _ -> User.get(session_user)
