@@ -36,13 +36,28 @@ defmodule Pluggy.Group do
   end
 
   def add_students(group_id, params) do
-    student = String.to_integer(params["student_id"])
     group = String.to_integer(group_id)
+    student = String.to_integer(params["student_id"])
 
     Postgrex.query!(
       DB,
       "INSERT INTO student_group_relations (student_id, group_id) VALUES ($1, $2)",
       [student, group],
+      pool: DBConnection.Poolboy
+    )
+  end
+
+  def destroy_students(group_id, student_id) do
+    group = String.to_integer(group_id)
+    student = String.to_integer(student_id)
+    IO.inspect(group)
+    IO.inspect(student)
+
+
+    Postgrex.query!(
+      DB,
+      "DELETE FROM student_group_relations WHERE group_id = $1 AND student_id = $2",
+      [group, student],
       pool: DBConnection.Poolboy
     )
   end
