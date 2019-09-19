@@ -13,7 +13,7 @@ div class="navigation"
           a href="/groups/#{group.id}" #{group.name}
         div class="group-controls"
           a href="/groups/#{group.id}/edit" EDIT
-          form action="/groups/#{group.id}/destroy"
+          form action="/groups/#{group.id}/destroy" method="post"
             button type="submit" REMOVE
     .group-add
       a href="/groups/new" NEW
