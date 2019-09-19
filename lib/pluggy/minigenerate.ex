@@ -14,6 +14,19 @@ defmodule Pluggy.Minigenerate do
     Postgrex.query!(DB, "INSERT INTO student_group_relations(student_id, group_id) VALUES($1, $2)", [4, 1], pool: DBConnection.Poolboy)
 
     Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Daniel", Bcrypt.hash_pwd_salt("123"), 0], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Harry Potter", Bcrypt.hash_pwd_salt("123"), 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Ola", Bcrypt.hash_pwd_salt("123"), 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Fredrik", Bcrypt.hash_pwd_salt("123"), 1], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO users(username, password_hash, permissions) VALUES($1, $2, $3)", ["Bengt", Bcrypt.hash_pwd_salt("123"), 1], pool: DBConnection.Poolboy)
+
+
+    Postgrex.query!(DB, "INSERT INTO schools(name, img, about) VALUES($1, $2, $3)", ["Hogwarts", "/hogwarts.png", "A very magical place"], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO schools(name, img, about) VALUES($1, $2, $3)", ["NTI Johanneberg", "/nti.png", "A very technical place"], pool: DBConnection.Poolboy)
+
+    Postgrex.query!(DB, "INSERT INTO user_school_relations(user_id, school_id) VALUES($1, $2)", [1, 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO user_school_relations(user_id, school_id) VALUES($1, $2)", [2, 1], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO user_school_relations(user_id, school_id) VALUES($1, $2)", [3, 2], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO user_school_relations(user_id, school_id) VALUES($1, $2)", [4, 2], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO user_school_relations(user_id, school_id) VALUES($1, $2)", [5, 2], pool: DBConnection.Poolboy)
   end
 end
