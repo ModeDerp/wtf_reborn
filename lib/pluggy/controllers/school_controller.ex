@@ -14,7 +14,7 @@ defmodule Pluggy.SchoolController do
 
   def edit(conn, id), do: send_resp(conn, 200, srender("schools/edit", user: getUser(conn), school: School.get(String.to_integer(id))))
 
-  def add(conn, id), do: send_resp(conn, 200, srender("schools/add", user: getUser(conn), teachers: User.getAllTeachers()))
+  def add(conn, id), do: send_resp(conn, 200, srender("schools/add", user: getUser(conn), school: School.get(String.to_integer(id)), teachers: User.get_teachers()))
 
   def update(conn, id, params) do
     School.update(id, params)

@@ -1,6 +1,7 @@
 defmodule Pluggy.Router do
   use Plug.Router
 
+  alias Pluggy.SchoolController
   alias Pluggy.StudentController
   alias Pluggy.UserController
   alias Pluggy.GroupController
@@ -44,6 +45,7 @@ defmodule Pluggy.Router do
   # get("/students/:id", do: StudentController.show(conn, id))
   get("/students/:id/edit", do: StudentController.edit(conn, id))
   get("/teachers/new", do: UserController.new_teacher(conn))
+  get("/schools/:id/add", do: SchoolController.add(conn, id))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/groups/create", do: GroupController.create(conn, conn.body_params))
