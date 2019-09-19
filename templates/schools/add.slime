@@ -1,0 +1,13 @@
+div class="navigation"
+    h1 What's Their Face
+    = if user do
+        form class="logout" action="/users/logout" method="post"
+            span #{user.username}
+            button type="submit" Log out
+
+p Choose a teacher to a school
+form action="/schools/#{school.id}/add" method="post"
+    select name="teacher_id"
+        = for teacher <- teachers do
+            option value="#{teacher.id}" #{teacher.username}
+    button type="submit" Add
