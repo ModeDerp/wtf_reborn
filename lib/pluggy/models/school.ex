@@ -3,6 +3,7 @@ defmodule Pluggy.School do
 
   alias Pluggy.School
   alias Pluggy.Group
+  alias Pluggy.User
 
   def all() do
     Postgrex.query!(DB, "SELECT * FROM schools", [],
@@ -75,16 +76,26 @@ defmodule Pluggy.School do
     |> to_struct
   end
 
-  def get_groups(%Group{id: id}) do
+  def get_groups(%School{id: id}) do
     Postgrex.query!(DB, "SELECT * FROM groups WHERE school_id = $1;", [id],
       pool: DBConnection.Poolboy
       ).rows
-    |> Group.to_struct_list
+    |> to_struct_list
+  end
+
+  def get_teachers(%School{id: id}) do
+    Postgrex.query!(DB, "SELECT u.id, u.username, u.permissions FROM users u
+    INNER JOIN user_school_relations usr ON u.id = usr.user_id
+    INNER JOIN schools s ON s.id = usr.school_id
+
+    WHERE NOT permissions = 0 AND s.id = $1", [id],
+    pool: DBConnection.Poolboy).rows
+    |> User.to_struct_list
   end
 
   def to_struct([]), do: nil
-  def to_struct([[id, school_id, name, img, about]]) do
-    %Group{id: id, school_id: school_id, name: name, img: img, about: about}
+  def to_struct([[id, name, img, about]]) do
+    %School{id: id, name: name, img: img, about: about}
   end
 
   def to_struct_list(_, acc \\ [])
