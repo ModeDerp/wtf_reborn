@@ -64,9 +64,16 @@ defmodule Pluggy.School do
   #   remove(head)
   #   remove(tail)
   # end
-  def remove(id) do
-    Postgrex.query!(DB, "DELETE FROM schools WHERE id = $1", [id],
-      pool: DBConnection.Poolboy)
+  def destroy(school_id) do
+    school = String.to_integer(school_id)
+
+    Postgrex.query!(
+      DB,
+      "DELETE FROM schools WHERE id = $1" ,
+      [school],
+      pool: DBConnection.Poolboy
+    )
+
   end
 
   def get(id) do
