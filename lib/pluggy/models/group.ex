@@ -62,6 +62,25 @@ defmodule Pluggy.Group do
     )
   end
 
+  def destroy_groups(group_id) do
+    group = String.to_integer(group_id)
+
+    Postgrex.query!(
+      DB,
+      "DELETE FROM student_group_relations WHERE group_id = $1",
+      [group],
+      pool: DBConnection.Poolboy
+    )
+
+    Postgrex.query!(
+      DB,
+      "DELETE FROM groups WHERE id = $1" ,
+      [group],
+      pool: DBConnection.Poolboy
+    )
+
+  end
+
   def remove([]), do: {:ok, "Successfully deleted all groups"}
   def remove([head | tail]) do
     remove(head)
