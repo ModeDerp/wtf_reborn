@@ -27,7 +27,7 @@ defmodule Pluggy.Router do
 
   get("/") do
     if getUser(conn) do
-      handleRequest(conn, &GroupController.index/1)
+      handleRequest(conn, &SchoolController.index/1)
     else
       redirect(conn, "/login")
     end

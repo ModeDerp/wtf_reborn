@@ -4,16 +4,17 @@ defmodule Pluggy.GroupController do
   alias Pluggy.Student
   alias Pluggy.Group
   alias Pluggy.User
+  alias Pluggy.UserController
   import Pluggy.Template, only: [srender: 2]
   import Plug.Conn, only: [send_resp: 3]
 
-  def index(conn), do: send_resp(conn, 200, srender("groups/index", user: getUser(conn), groups: Group.all()))
+  def index(conn), do: send_resp(conn, 200, srender("groups/index", user: UserController.getUser(conn), groups: Group.all()))
 
-  def new(conn), do: send_resp(conn, 200, srender("groups/new", user: getUser(conn)))
+  def new(conn), do: send_resp(conn, 200, srender("groups/new", user: UserController.getUser(conn)))
 
-  def edit(conn, id), do: send_resp(conn, 200, srender("groups/edit", user: getUser(conn), group: Group.get(String.to_integer(id))))
+  def edit(conn, id), do: send_resp(conn, 200, srender("groups/edit", user: UserController.getUser(conn), group: Group.get(String.to_integer(id))))
 
-  def add(conn, id), do: send_resp(conn, 200, srender("groups/add", user: getUser(conn), students: Student.all(), group: Group.get(String.to_integer(id))))
+  def add(conn, id), do: send_resp(conn, 200, srender("groups/add", user: UserController.getUser(conn), students: Student.all(), group: Group.get(String.to_integer(id))))
 
   def update(conn, id, params) do
     Group.update(id, params)
@@ -52,16 +53,7 @@ defmodule Pluggy.GroupController do
     group_struct = Group.get(String.to_integer(id))
     student_structs = Group.get_students(Group.get(String.to_integer(id)))
 
-    send_resp(conn, 200, srender("groups/group", group: group_struct, user: getUser(conn), students: student_structs))
-  end
-
-  defp getUser(conn) do
-    # get user if logged in
-    session_user = conn.private.plug_session["user_id"]
-    case session_user do
-      nil -> nil
-      _ -> User.get(session_user)
-    end
+    send_resp(conn, 200, srender("groups/group", group: group_struct, user: UserController.getUser(conn), students: student_structs))
   end
 
   defp redirect(conn, url) do
