@@ -47,7 +47,7 @@ defmodule Pluggy.UserController do
    	redirect(conn, "/")
   end
 
-  defp getUser(conn) do
+  def getUser(conn) do
     # get user if logged in
     session_user = conn.private.plug_session["user_id"]
     case session_user do

@@ -11,13 +11,13 @@ defmodule Pluggy.Group do
     |> to_struct_list
   end
 
-  def create(params) do
-    _school_id = params["school_id"]
+  def create(school_id, params) do
+    school_id = String.to_integer(school_id)
     name = params["name"]
     img = params["img"]
     about = params["about"]
 
-    Postgrex.query!(DB, "INSERT INTO groups(name, img, about) VALUES($1, $2, $3)", [name, img, about], # TODO: Insert school id
+    Postgrex.query!(DB, "INSERT INTO groups(name, img, about, school_id) VALUES($1, $2, $3, $4)", [name, img, about, school_id],
       pool: DBConnection.Poolboy)
   end
 

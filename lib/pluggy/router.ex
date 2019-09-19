@@ -29,17 +29,18 @@ defmodule Pluggy.Router do
 
   get("/") do
     if getUser(conn) do
-      handleRequest(conn, &GroupController.index/1)
+      handleRequest(conn, &SchoolController.index/1)
     else
       redirect(conn, "/login")
     end
   end
 
   get("/groups", do: handleRequest(conn, &GroupController.index/1))
-  get("/groups/new", do: handleRequest(conn, &GroupController.new/1))
+  get("/schools/:id/groups/new", do: GroupController.new(conn, id))
   get("/groups/:id", do: GroupController.show(conn, id))
   get("/groups/:id/edit", do: GroupController.edit(conn, id))
   get("/groups/:id/students/add", do: GroupController.add(conn,id))
+
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
   # get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
@@ -49,12 +50,14 @@ defmodule Pluggy.Router do
   get("/teachers/new", do: UserController.new_teacher(conn))
   get("/schools/:id/add", do: SchoolController.add(conn, id))
   get("/schools/new", do: SchoolController.new(conn))
+
+  get("schools/:id", do: SchoolController.groups_admin(conn, id))
   get("/schools", do: SchoolController.index(conn))
   get("/schools/:id/edit", do: SchoolController.edit(conn, id))
   get("/schools/:school_id/groups/:group_id/quiz", do: send_resp(conn, 200, Pluggy.Template.srender("quiz/index", school: School.get(String.to_integer(school_id)), group: Group.get(String.to_integer(group_id)))))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
-  post("/groups/create", do: GroupController.create(conn, conn.body_params))
+  post("/schools/:id/groups/create", do: GroupController.create(conn, id, conn.body_params))
   post("/students/create", do: StudentController.create(conn, conn.body_params))
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
   post("/groups/:id/edit", do: GroupController.update(conn, id, conn.body_params))

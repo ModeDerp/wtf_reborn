@@ -6,7 +6,7 @@ div class="navigation"
             button type="submit" Log out
 
 h3 Create group
-form action="/groups/create" method="post"
+form action="/schools/#{school.id}/groups/create" method="post"
     label for="name" Name
     input type="text" name="name" id="name"
     label for="about" About
