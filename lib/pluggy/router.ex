@@ -48,6 +48,7 @@ defmodule Pluggy.Router do
   get("/schools/:id/add", do: SchoolController.add(conn, id))
   get("/schools/new", do: SchoolController.new(conn))
   get("/schools", do: SchoolController.index(conn))
+  get("/schools/:id/edit", do: SchoolController.edit(conn, id))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/groups/create", do: GroupController.create(conn, conn.body_params))
@@ -57,6 +58,7 @@ defmodule Pluggy.Router do
   post("/groups/:id/students/:student/destroy", do: GroupController.destroy_students(conn, id, student))
   post("/groups/:id/destroy", do: GroupController.destroy_groups(conn, id))
   post("/schools/create", do: SchoolController.create(conn, conn.body_params))
+  post("/schools/:id/edit", do: SchoolController.update(conn, id, conn.body_params))
   post("/schools/:id/destroy", do: SchoolController.destroy(conn, id))
 
   post("/students/:id/destroy", do: StudentController.destroy(conn, id))
