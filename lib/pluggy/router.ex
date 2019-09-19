@@ -51,6 +51,7 @@ defmodule Pluggy.Router do
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
   post("/groups/:id/edit", do: GroupController.update(conn, id, conn.body_params))
   post("/groups/:id/students/:student/destroy", do: GroupController.destroy_students(conn, id, student))
+  post("/groups/:id/destroy", do: GroupController.destroy_groups(conn, id))
 
   post("/students/:id/destroy", do: StudentController.destroy(conn, id))
 
