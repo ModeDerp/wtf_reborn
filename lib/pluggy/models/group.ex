@@ -50,9 +50,6 @@ defmodule Pluggy.Group do
   def destroy_students(group_id, student_id) do
     group = String.to_integer(group_id)
     student = String.to_integer(student_id)
-    IO.inspect(group)
-    IO.inspect(student)
-
 
     Postgrex.query!(
       DB,

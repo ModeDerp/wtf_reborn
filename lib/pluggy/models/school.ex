@@ -69,6 +69,28 @@ defmodule Pluggy.School do
 
     Postgrex.query!(
       DB,
+      "DELETE FROM user_school_relations WHERE school_id = $1",
+      [school],
+      pool: DBConnection.Poolboy
+    )
+
+    Postgrex.query!(
+      DB,
+      "SELECT * FROM groups WHERE school_id = $1",
+      [school],
+      pool: DBConnection.Poolboy
+    ).rows
+    |> deleteSchoolGroups
+
+    Postgrex.query!(
+      DB,
+      "DELETE FROM student_group_relations WHERE group_id = $1",
+      [school],
+      pool: DBConnection.Poolboy
+    )
+
+    Postgrex.query!(
+      DB,
       "DELETE FROM schools WHERE id = $1" ,
       [school],
       pool: DBConnection.Poolboy
@@ -98,6 +120,27 @@ defmodule Pluggy.School do
     WHERE NOT permissions = 0 AND s.id = $1", [id],
     pool: DBConnection.Poolboy).rows
     |> User.to_struct_list
+  end
+
+  def deleteSchoolGroups(list) do
+    list |> Enum.map(&destroy_groups/1)
+  end
+
+  def destroy_groups(group) do
+    Postgrex.query!(
+      DB,
+      "DELETE FROM student_group_relations WHERE group_id = $1",
+      [group.id],
+      pool: DBConnection.Poolboy
+    )
+
+    Postgrex.query!(
+      DB,
+      "DELETE FROM groups WHERE id = $1" ,
+      [group.id],
+      pool: DBConnection.Poolboy
+    )
+
   end
 
   def to_struct([]), do: nil

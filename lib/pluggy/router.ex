@@ -40,7 +40,7 @@ defmodule Pluggy.Router do
   get("/groups", do: handleRequest(conn, &GroupController.index/1))
   get("/schools/:id/groups/new", do: GroupController.new(conn, id))
   get("/groups/:id", do: GroupController.show(conn, id))
-  get("/groups/:id/edit", do: GroupController.edit(conn, id))
+  get("/schools/:school_id/groups/:group_id/edit", do: GroupController.edit(conn, school_id, group_id))
   get("/groups/:id/students/add", do: GroupController.add(conn,id))
 
 
@@ -50,7 +50,7 @@ defmodule Pluggy.Router do
   # get("/students/:id", do: StudentController.show(conn, id))
   get("/students/:id/edit", do: StudentController.edit(conn, id))
   get("/teachers/new", do: UserController.new_teacher(conn))
-  get("/schools/:id/add", do: SchoolController.add(conn, id))
+  get("/schools/:id/teachers/add", do: SchoolController.add(conn, id))
   get("/schools/new", do: SchoolController.new(conn))
 
   get("schools/:id", do: SchoolController.groups_admin(conn, id))
@@ -59,15 +59,17 @@ defmodule Pluggy.Router do
   get("/schools/:school_id/groups/:group_id/quiz", do: send_resp(conn, 200, Pluggy.Template.srender("quiz/index", user: getUser(conn), school: School.get(String.to_integer(school_id)), group: Group.get(String.to_integer(group_id)))))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
+  post("/schools/:id/teachers/add", do: SchoolController.add_teachers(conn, id, conn.body_params))
   post("/schools/:id/groups/create", do: GroupController.create(conn, id, conn.body_params))
   post("/students/create", do: StudentController.create(conn, conn.body_params))
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
-  post("/groups/:id/edit", do: GroupController.update(conn, id, conn.body_params))
+  post("/schools/:school_id/groups/:group_id/edit", do: GroupController.update(conn, school_id, group_id, conn.body_params))
   post("/groups/:id/students/:student/destroy", do: GroupController.destroy_students(conn, id, student))
-  post("/groups/:id/destroy", do: GroupController.destroy_groups(conn, id))
+  post("/schools/:school_id/groups/:group_id/destroy", do: GroupController.destroy_groups(conn, school_id, group_id))
   post("/schools/create", do: SchoolController.create(conn, conn.body_params))
   post("/schools/:id/edit", do: SchoolController.update(conn, id, conn.body_params))
   post("/schools/:id/destroy", do: SchoolController.destroy(conn, id))
+  post("/schools/:school_id/teachers/:teacher_id/destroy", do: SchoolController.destroy_teachers(conn, school_id, teacher_id))
 
   post("/students/:id/destroy", do: StudentController.destroy(conn, id))
 

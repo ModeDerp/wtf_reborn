@@ -3,7 +3,6 @@ defmodule Pluggy.GroupController do
 
   alias Pluggy.Student
   alias Pluggy.Group
-  alias Pluggy.User
   alias Pluggy.School
   alias Pluggy.UserController
   import Pluggy.Template, only: [srender: 2]
@@ -14,13 +13,13 @@ defmodule Pluggy.GroupController do
   def new(conn), do: send_resp(conn, 200, srender("groups/new", user: UserController.getUser(conn)))
   def new(conn, id), do: send_resp(conn, 200, srender("groups/new", user: UserController.getUser(conn), school: School.get(String.to_integer(id))))
 
-  def edit(conn, id), do: send_resp(conn, 200, srender("/", user: UserController.getUser(conn), group: Group.get(String.to_integer(id))))
+  def edit(conn, school_id, group_id), do: send_resp(conn, 200, srender("groups/edit", user: UserController.getUser(conn), group: Group.get(String.to_integer(group_id)), school: School.get(String.to_integer(school_id))))
 
   def add(conn, id), do: send_resp(conn, 200, srender("groups/add", user: UserController.getUser(conn), students: Student.all(), group: Group.get(String.to_integer(id))))
 
-  def update(conn, id, params) do
-    Group.update(id, params)
-    redirect(conn, "/groups")
+  def update(conn, school_id, group_id, params) do
+    Group.update(group_id, params)
+    redirect(conn, "/schools/#{school_id}")
   end
 
   def add_students(conn, group_id, params) do
@@ -33,9 +32,9 @@ defmodule Pluggy.GroupController do
     redirect(conn, "/groups/#{group_id}")
   end
 
-  def destroy_groups(conn, group_id) do
+  def destroy_groups(conn, school_id, group_id) do
     Group.destroy_groups(group_id)
-    redirect(conn, "/groups")
+    redirect(conn, "/schools/#{school_id}")
   end
 
   def create(conn, id, params) do

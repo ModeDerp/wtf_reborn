@@ -6,7 +6,7 @@ div class="navigation"
             button type="submit" Log out
 
 p Choose a teacher to a school
-form action="/schools/#{school.id}/add" method="post"
+form action="/schools/#{school.id}/teachers/add" method="post"
     select name="teacher_id"
         = for teacher <- teachers do
             option value="#{teacher.id}" #{teacher.username}

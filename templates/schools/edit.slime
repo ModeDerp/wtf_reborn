@@ -6,11 +6,11 @@ div class="navigation"
             button type="submit" Log out
             
 h3 Edit group
-form action="/schools/#{school.id}/groups/#{group.id}/edit" method="post"
+form action="/schools/#{school.id}/edit" method="post"
     label for="name" Name
-    input type="text" name="name" id="name" value="#{group.name}"
+    input type="text" name="name" id="name" value="#{school.name}"
     label for="about" About
-    input type="text" name="about" id="about" value="#{group.about}"
+    input type="text" name="about" id="about" value="#{school.about}"
     label for="img" Image
     input type="file" name="img" id="img"
     button type="submit" Edit
