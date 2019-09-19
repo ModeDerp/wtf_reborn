@@ -5,47 +5,14 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
 
-.group-title
-  h1 #{school.name} Groups
-
 div class="groups"
-= for school <- school_groups do
-    p #{school.school.name}
-/       div
-/         div class="group-name"
-/           a href="/groups/#{group.id}" #{group.name}
-/         div class="group-controls"
-/           a href="/groups/#{group.id}/edit" EDIT
-/           form action="/groups/#{group.id}/destroy" method="post"
-/             button type="submit" REMOVE
-/     .group-add
-/       a href="/groups/new" NEW
-
-/   .group-title
-/     h1 Teachers
-
-/   .teachers
-/     = for teacher <- teachers do
-/       div
-/         .teacher-img
-/           img src="/placeholder-images-image_large.png"
-/         .teacher-name
-/             a href="/teachers/#{teacher.id}" #{teacher.username}
-/         = if user.permissions == 0 do
-/             .teacher-controls
-/                 a href="/teachers/#{teacher.id}/edit" EDIT
-/                 form action="/schools/#{school.id}/teachers/#{teacher.id}/destroy" method="post"
-/                     button type="submit" REMOVE
-/     = if user.permissions == 0 do
-/         .teacher-add
-/             a href="/schools/#{school.id}/teachers/add" NEW
-
-/ - else
-/   .groups
-/     = for group <- groups do
-/       div
-/         div class="group-name"
-/           a href="/groups/#{group.id}" #{group.name}
-/         div class="group-controls"
-/           a href="/groups/#{group.id}" SHOW
-/           a href="#" PRACTICE
+    = for school <- school_groups do
+        h1 #{school.school.name}
+        = for group <- school.groups do
+            div
+                .group-name
+                    a href="/groups/#{group.id}" #{group.name}
+                div class="group-controls"
+                    a href="/groups/#{group.id}/edit" EDIT
+                    form action="/groups/#{group.id}/destroy" method="post"
+                        button type="submit" REMOVE

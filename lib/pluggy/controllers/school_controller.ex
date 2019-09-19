@@ -20,8 +20,8 @@ defmodule Pluggy.SchoolController do
   def groups_admin(conn, id) do
     school_id = String.to_integer(id)
     school = School.get(school_id)
-    groups = School.get_groups(school_id)
-    teachers = School.get_teachers(school_id)
+    groups = School.get_groups(school)
+    teachers = School.get_teachers(school)
     user = UserController.getUser(conn)
 
     send_resp(conn, 200, srender("groups/index", user: user, school: school, groups: groups, teachers: teachers))
@@ -30,7 +30,7 @@ defmodule Pluggy.SchoolController do
   def groups_teacher(conn) do
     user = UserController.getUser(conn)
     schools = User.get_schools(user)
-    
+
     send_resp(conn, 200, srender("groups/teacher", user: user, school_groups: school_groups_list(schools)))
   end
 

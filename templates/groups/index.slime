@@ -20,7 +20,7 @@ div class="navigation"
           form action="/groups/#{group.id}/destroy" method="post"
             button type="submit" REMOVE
     .group-add
-      a href="/groups/new" NEW
+      a href="/schools/#{school.id}/groups/new" NEW
 
   .group-title
     h1 Teachers

@@ -34,7 +34,7 @@ defmodule Pluggy.Router do
   end
 
   get("/groups", do: handleRequest(conn, &GroupController.index/1))
-  get("/groups/new", do: handleRequest(conn, &GroupController.new/1))
+  get("/schools/:id/groups/new", do: GroupController.new(conn, id))
   get("/groups/:id", do: GroupController.show(conn, id))
   get("/groups/:id/edit", do: GroupController.edit(conn, id))
   get("/groups/:id/students/add", do: GroupController.add(conn,id))
@@ -49,12 +49,12 @@ defmodule Pluggy.Router do
   get("/schools/:id/add", do: SchoolController.add(conn, id))
   get("/schools/new", do: SchoolController.new(conn))
 
-  # get("schools/:id", do: SchoolController.groups(conn, id))
+  get("schools/:id", do: SchoolController.groups_admin(conn, id))
   get("/schools", do: SchoolController.index(conn))
   get("/schools/:id/edit", do: SchoolController.edit(conn, id))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
-  post("/groups/create", do: GroupController.create(conn, conn.body_params))
+  post("/schools/:id/groups/create", do: GroupController.create(conn, id, conn.body_params))
   post("/students/create", do: StudentController.create(conn, conn.body_params))
   post("/students/:id/edit", do: StudentController.update(conn, id, conn.body_params))
   post("/groups/:id/edit", do: GroupController.update(conn, id, conn.body_params))

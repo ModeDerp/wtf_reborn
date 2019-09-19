@@ -4,6 +4,7 @@ defmodule Pluggy.GroupController do
   alias Pluggy.Student
   alias Pluggy.Group
   alias Pluggy.User
+  alias Pluggy.School
   alias Pluggy.UserController
   import Pluggy.Template, only: [srender: 2]
   import Plug.Conn, only: [send_resp: 3]
@@ -11,8 +12,9 @@ defmodule Pluggy.GroupController do
   def index(conn), do: send_resp(conn, 200, srender("groups/index", user: UserController.getUser(conn), groups: Group.all()))
 
   def new(conn), do: send_resp(conn, 200, srender("groups/new", user: UserController.getUser(conn)))
+  def new(conn, id), do: send_resp(conn, 200, srender("groups/new", user: UserController.getUser(conn), school: School.get(String.to_integer(id))))
 
-  def edit(conn, id), do: send_resp(conn, 200, srender("groups/edit", user: UserController.getUser(conn), group: Group.get(String.to_integer(id))))
+  def edit(conn, id), do: send_resp(conn, 200, srender("/", user: UserController.getUser(conn), group: Group.get(String.to_integer(id))))
 
   def add(conn, id), do: send_resp(conn, 200, srender("groups/add", user: UserController.getUser(conn), students: Student.all(), group: Group.get(String.to_integer(id))))
 
@@ -36,14 +38,14 @@ defmodule Pluggy.GroupController do
     redirect(conn, "/groups")
   end
 
-  def create(conn, params) do
+  def create(conn, id, params) do
     if params["name"] != "" do
-      params |> Group.create
+      Group.create(id, params)
       #move uploaded file from tmp-folder (might want to first check that a file was uploaded)
       if params["file"] do
         File.rename(params["file"].path, "priv/static/uploads/#{params["file"].filename}")
       end
-      redirect(conn, "/groups")
+      redirect(conn, "/schools/#{id}")
     else
       redirect(conn, "./new")
     end
