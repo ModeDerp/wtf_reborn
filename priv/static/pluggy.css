@@ -384,3 +384,59 @@ html, body{
 	text-decoration: none;
 	font-size: 2em;
 }
+/* QUIZ */
+.quiz-container{
+	display: flex;
+	justify-content: center;
+}
+
+.quiz-image{
+	height: 500px;
+	width: 500px;
+}
+
+.quiz-image > img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.quiz-sidebar{
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	margin-left: 40px;
+}
+
+.quiz-answers{
+	flex: 1;
+}
+
+.quiz-answer{
+	background-color: #4899F3;
+	padding: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.quiz-next{
+	height: 50px;
+	background-color: #4899F3;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.correct{
+	background-color: green;
+}
+
+.incorrect{
+	background-color: red;
+}

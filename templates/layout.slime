@@ -3,5 +3,7 @@ html
     head
         title WTF?! What's their face
         link rel="stylesheet" type="text/css" href="/pluggy.css"
+        meta charset="UTF-8"
+
     body
     = template
