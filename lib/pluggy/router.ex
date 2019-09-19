@@ -35,6 +35,8 @@ defmodule Pluggy.Router do
     end
   end
 
+  get("json/:id", do: send_resp(conn, 200, Poison.encode!(Group.get_students(Group.get(String.to_integer(id))))))
+
   get("/groups", do: handleRequest(conn, &GroupController.index/1))
   get("/schools/:id/groups/new", do: GroupController.new(conn, id))
   get("/groups/:id", do: GroupController.show(conn, id))
@@ -54,7 +56,7 @@ defmodule Pluggy.Router do
   get("schools/:id", do: SchoolController.groups_admin(conn, id))
   get("/schools", do: SchoolController.index(conn))
   get("/schools/:id/edit", do: SchoolController.edit(conn, id))
-  get("/schools/:school_id/groups/:group_id/quiz", do: send_resp(conn, 200, Pluggy.Template.srender("quiz/index", school: School.get(String.to_integer(school_id)), group: Group.get(String.to_integer(group_id)))))
+  get("/schools/:school_id/groups/:group_id/quiz", do: send_resp(conn, 200, Pluggy.Template.srender("quiz/index", user: getUser(conn), school: School.get(String.to_integer(school_id)), group: Group.get(String.to_integer(group_id)))))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/schools/:id/groups/create", do: GroupController.create(conn, id, conn.body_params))

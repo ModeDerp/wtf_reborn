@@ -5,14 +5,14 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
 
-div class="groups"
-    = for school <- school_groups do
+= for school <- school_groups do
+    .group-title
         h1 #{school.school.name}
+    div class="groups"
         = for group <- school.groups do
             div
-                .group-name
+                div class="group-name"
                     a href="/groups/#{group.id}" #{group.name}
                 div class="group-controls"
-                    a href="/groups/#{group.id}/edit" EDIT
-                    form action="/groups/#{group.id}/destroy" method="post"
-                        button type="submit" REMOVE
+                    a href="/groups/#{group.id}" SHOW
+                    a href="/schools/#{school.school.id}/groups/#{group.id}/quiz" PRACTICE
