@@ -5,7 +5,11 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
 
+.group-title
+  h1 #{school.name} Groups
+
 = if user.permissions == 0 do
+  
   div class="groups"
     = for group <- groups do
       div
@@ -17,8 +21,28 @@ div class="navigation"
             button type="submit" REMOVE
     .group-add
       a href="/groups/new" NEW
+
+  .group-title
+    h1 Teachers
+
+  .teachers
+    = for teacher <- teachers do
+      div
+        .teacher-img
+          img src="/placeholder-images-image_large.png"
+        .teacher-name
+            a href="/teachers/#{teacher.id}" #{teacher.username}
+        = if user.permissions == 0 do
+            .teacher-controls
+                a href="/teachers/#{teacher.id}/edit" EDIT
+                form action="/schools/#{school.id}/teachers/#{teacher.id}/destroy" method="post"
+                    button type="submit" REMOVE
+    = if user.permissions == 0 do
+        .teacher-add
+            a href="/schools/#{school.id}/teachers/add" NEW
+    
 - else
-  div class="groups"
+  .groups
     = for group <- groups do
       div
         div class="group-name"
