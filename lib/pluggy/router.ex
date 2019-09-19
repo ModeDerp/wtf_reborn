@@ -46,6 +46,7 @@ defmodule Pluggy.Router do
   get("/students/:id/edit", do: StudentController.edit(conn, id))
   get("/teachers/new", do: UserController.new_teacher(conn))
   get("/schools/:id/add", do: SchoolController.add(conn, id))
+  get("/schools/new", do: SchoolController.new(conn))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/groups/create", do: GroupController.create(conn, conn.body_params))
