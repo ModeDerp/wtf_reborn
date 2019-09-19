@@ -317,3 +317,70 @@ html, body{
 	text-decoration: none;
 	font-size: 2em;
 }
+/* SCHOOLS */
+.schools{
+	margin: auto 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.schools > div{
+	width: 200px;
+	height: 200px;
+	background-color: #C2E0FA;
+	margin: 20px;
+}
+
+.school-name{
+	width: 100%;
+	height: 130px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.school-name > a{
+	color: white;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.school-controls{
+	width: 100%;
+	height: 70px;
+	background-color: #4899F3;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.school-controls > a{
+	color: white;
+	text-decoration: none;
+}
+
+.school-controls button{
+	color: white;
+	border: none;
+	background-color: #4899F3;
+	font-size: 1em;
+}
+
+.school-controls button:hover{
+	cursor: pointer;
+}
+
+.school-add{
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+.school-add a{
+	color: white;
+	text-decoration: none;
+	font-size: 2em;
+}
