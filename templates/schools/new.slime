@@ -1,0 +1,16 @@
+div class="navigation"
+    h1 What's Their Face
+    = if user do
+        form class="logout" action="/users/logout" method="post"
+            span #{user.username}
+            button type="submit" Log out
+
+h3 Create school
+form action="/schools/create" method="post"
+    label for="name" Name
+    input type="text" name="name" id="name"
+    label for="about" About
+    input type="text" name="about" id="about"
+    label for="img" Image
+    input type="file" name="img" id="img"
+    button type="submit" Create
