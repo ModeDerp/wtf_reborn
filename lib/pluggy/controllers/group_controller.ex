@@ -52,9 +52,10 @@ defmodule Pluggy.GroupController do
 
   def show(conn, id) do
     group_struct = Group.get(String.to_integer(id))
+    school_id = group_struct.school_id
     student_structs = Group.get_students(Group.get(String.to_integer(id)))
 
-    send_resp(conn, 200, srender("groups/group", group: group_struct, user: UserController.getUser(conn), students: student_structs))
+    send_resp(conn, 200, srender("groups/group", group: group_struct, user: UserController.getUser(conn), students: student_structs, school: School.get(school_id)))
   end
 
   defp redirect(conn, url) do

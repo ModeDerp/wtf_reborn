@@ -1,37 +1,3 @@
-/ css:
-/     /* Tooltip text */
-/     .tooltip .tooltiptext {
-/         visibility: hidden;
-/         width: 200px;
-/         background-color: white;
-/         text-align: center;
-/         padding: 5px 0;
-/         border-radius: 6px;
-/         /* Position the tooltip text - see examples below! */
-/         position: absolute;
-/         z-index: 1;
-/     }
-/     /* Show the tooltip text when you mouse over the tooltip container */
-/     .tooltip:hover .tooltiptext {
-/         visibility: visible;
-/     }
-
-/ = if group do
-/     .group_info 
-/         h1 Group #{group.name}
-/     = if user do
-/         = if user.permissions == 0 do
-/             a href="/groups/#{group.id}/edit" Edit group
-/         - else
-/             div.tooltip
-/                 div Edit group
-/                 div class="tooltiptext" Missing permission to edit group.
-/         br
-/         br
-/ - else  
-/     .group_info
-/         h1 No group selected
-
 div class="navigation"
     h1 What's Their Face
     = if user do
@@ -40,11 +6,12 @@ div class="navigation"
             button type="submit" Log out
 
 .group-title
-    h1 Group #{group.name}
+    h1 #{school.name}
+    h1 #{group.name}
 
 .students
     = for student <- students do
-        div
+        .student
             .student-img
                 = if student.img == nil do
                     img src="/placeholder-images-image_large.png"
@@ -59,4 +26,5 @@ div class="navigation"
                         button type="submit" REMOVE
     = if user.permissions == 0 do
         .student-add
-            a href="/groups/#{group.id}/students/add" NEW
+            a href="/groups/#{group.id}/students/add" ADD STUDENT
+            a href="/students/new" NEW STUDENT

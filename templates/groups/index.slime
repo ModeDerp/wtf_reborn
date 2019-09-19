@@ -27,7 +27,7 @@ div class="navigation"
 
   .teachers
     = for teacher <- teachers do
-      div
+      .teacher
         .teacher-img
           img src="/placeholder-images-image_large.png"
         .teacher-name
@@ -39,7 +39,8 @@ div class="navigation"
                     button type="submit" REMOVE
     = if user.permissions == 0 do
         .teacher-add
-            a href="/schools/#{school.id}/teachers/add" NEW
+            a href="/schools/#{school.id}/teachers/add" ADD TEACHER
+            a href="/teachers/new" NEW TEACHER
     
 - else
   .groups
