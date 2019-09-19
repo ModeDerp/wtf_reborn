@@ -1,0 +1,21 @@
+javascript:
+    const id = #{group.id}
+
+script src="/quiz.js"
+div class="navigation"
+    h1 What's Their Face
+    = if user do
+        form class="logout" action="/users/logout" method="post"
+            span #{user.username}
+            button type="submit" Log out
+
+.group-title
+    h1 #{group.name}
+
+.quiz-container
+    .quiz-image
+        img src="/placeholder-images-image_large.png"
+    .quiz-sidebar
+        .quiz-answers
+        .quiz-next onclick="nextGuess()"
+            span NEXT
