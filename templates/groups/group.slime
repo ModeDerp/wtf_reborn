@@ -55,7 +55,7 @@ div class="navigation"
             = if user.permissions == 0 do
                 .student-controls
                     a href="/students/#{student.id}/edit" EDIT
-                    form action="/groups/#{group.id}/students/#{student.id}/destroy"
+                    form action="/groups/#{group.id}/students/#{student.id}/destroy" method="post"
                         button type="submit" REMOVE
     = if user.permissions == 0 do
         .student-add
