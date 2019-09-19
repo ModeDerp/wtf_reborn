@@ -39,7 +39,6 @@ defmodule Pluggy.Router do
   get("/groups/:id/edit", do: GroupController.edit(conn, id))
   get("/groups/:id/students/add", do: GroupController.add(conn,id))
 
-  get("schools/:id/groups", do: SchoolController.index(id))
 
   get("/login", do: send_resp(conn, 200, Pluggy.Template.srender("users/login")))
   # get("/students", do: handleRequest(conn, &StudentController.index/1, 0))
@@ -49,6 +48,7 @@ defmodule Pluggy.Router do
   get("/teachers/new", do: UserController.new_teacher(conn))
   get("/schools/:id/add", do: SchoolController.add(conn, id))
   get("/schools/new", do: SchoolController.new(conn))
+  get("schools/:id", do: SchoolController.groups(conn, id))
 
   post("/groups/:id/add", do: GroupController.add_students(conn, id, conn.body_params))
   post("/groups/create", do: GroupController.create(conn, conn.body_params))

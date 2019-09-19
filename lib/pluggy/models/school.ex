@@ -80,7 +80,7 @@ defmodule Pluggy.School do
     Postgrex.query!(DB, "SELECT * FROM groups WHERE school_id = $1;", [id],
       pool: DBConnection.Poolboy
       ).rows
-    |> to_struct_list
+    |> Group.to_struct_list
   end
 
   def get_teachers(%School{id: id}) do

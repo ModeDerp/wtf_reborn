@@ -10,6 +10,11 @@ defmodule Pluggy.SchoolController do
 
   def index(conn), do: send_resp(conn, 200, srender("schools/index", user: getUser(conn), schools: School.all()))
 
+  def groups(conn, id) do
+    school = School.get(String.to_integer(id))
+    
+  end
+
   def new(conn), do: send_resp(conn, 200, srender("schools/new", user: getUser(conn)))
 
   def edit(conn, id), do: send_resp(conn, 200, srender("schools/edit", user: getUser(conn), school: School.get(String.to_integer(id))))
