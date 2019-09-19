@@ -15,7 +15,7 @@
           a href="/schools/#{school.id}" #{school.name}
         .school-controls
           a href="/schools/#{school.id}/edit" EDIT
-          form action="/schools/#{school.id}/destroy"
+          form action="/schools/#{school.id}/destroy" method="post"
             button type="submit" REMOVE
     .school-add
       a href="/schools/new" NEW
