@@ -19,7 +19,7 @@ defmodule Pluggy.Minigenerate do
     Postgrex.query!(DB, "INSERT INTO students(first_name, last_name, img, about) VALUES($1, $2, $3, $4)", ["Stefania", "Edelenbos", "3a stefania edelenbos.jpg", "Vild grabb"], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO students(first_name, last_name, img, about) VALUES($1, $2, $3, $4)", ["Suzy", "Allen", "3a suzy allen.jpg", "Maxad grabb"], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO students(first_name, last_name, img, about) VALUES($1, $2, $3, $4)", ["Tony", "Wagner", "3a tony wagner.jpg", "Ful Grabb"], pool: DBConnection.Poolboy)
-    Postgrex.query!(DB, "INSERT INTO students(first_name, last_name, img, about) VALUES($1, $2, $3, $4)", ["Yasine", "Flipsen", "3a yasine flipsen.jpg", "LIDL-version av Notch"], pool: DBConnection.Poolboy)
+    Postgrex.query!(DB, "INSERT INTO students(first_name, last_name, img, about) VALUES($1, $2, $3, $4)", ["Yassine", "Flipsen", "3a yassine flipsen.jpg", "LIDL-version av Notch"], pool: DBConnection.Poolboy)
     Postgrex.query!(DB, "INSERT INTO students(first_name, last_name, img, about) VALUES($1, $2, $3, $4)", ["Zahra", "Velde", "3a zahra velde.jpg", "Lyfter 400kg"], pool: DBConnection.Poolboy)
 
     # Groups
