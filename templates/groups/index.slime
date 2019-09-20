@@ -5,7 +5,7 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
 
-.group-title
+.title
   h1 #{school.name} Groups
 
 = if user.permissions == 0 do
@@ -22,7 +22,7 @@ div class="navigation"
     .group-add
       a href="/schools/#{school.id}/groups/new" NEW
 
-  .group-title
+  .title
     h1 Teachers
 
   .teachers

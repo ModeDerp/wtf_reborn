@@ -5,14 +5,16 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
        
-h3 Create student
-form action="/students/create" method="post"
-    label for="first_name" First name
-    input type="text" name="first_name" id="first_name"
-    label for="last_name" Last name
-    input type="text" name="last_name" id="last_name"
-    label for="about" About
-    input type="text" name="about" id="about"
-    label for="img" Image
-    input type="file" name="img" id="img"
-    button type="submit" Create
+.title
+    h1 New student
+.form-wrapper
+    form action="/students/create" method="post"
+        label for="first_name" First name
+        input type="text" name="first_name" id="first_name"
+        label for="last_name" Last name
+        input type="text" name="last_name" id="last_name"
+        label for="about" About
+        input type="text" name="about" id="about"
+        label for="img" Image
+        input type="file" name="img" id="img"
+        button type="submit" Create

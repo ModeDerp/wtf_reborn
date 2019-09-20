@@ -9,7 +9,7 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
 
-.group-title
+.title
     h1 #{group.name}
 
 .quiz-container
