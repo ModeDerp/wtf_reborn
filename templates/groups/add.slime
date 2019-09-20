@@ -5,10 +5,11 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
            
-h1 Students
-p Choose a student to add to group
-form action="/groups/#{group.id}/add" method="post"
-    select name="student_id"
-        = for student <- students do
-            option value="#{student.id}" #{student.first_name}
-    button type="submit" Add
+.title
+    h1 Add student to #{group.name}
+.form-wrapper
+    form action="/groups/#{group.id}/add" method="post"
+        select name="student_id"
+            = for student <- students do
+                option value="#{student.id}" #{student.first_name}
+        button type="submit" Add

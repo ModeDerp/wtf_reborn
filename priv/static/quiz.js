@@ -72,7 +72,7 @@ incorrectGuess = el => {
 
 appendResults = () => {
     qs(".quiz-container").innerHTML = "";
-    qs(".quiz-container").insertAdjacentHTML("beforeend", `<div class="group-title"><h1>Du hade ${correct + " / " + length} rätt!</h1></div>`)
+    qs(".quiz-container").insertAdjacentHTML("beforeend", `<div class="title"><h1>Du hade ${correct + " / " + length} rätt!</h1></div>`)
 }
 
 const shuffle = (a) => {

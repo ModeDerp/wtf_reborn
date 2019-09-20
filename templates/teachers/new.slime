@@ -5,10 +5,12 @@ div class="navigation"
             span #{user.username}
             button type="submit" Log out
        
-h3 Create teacher account
-form action="/teachers/create" method="post"
-    label for="username" Username
-    input type="text" name="username" id="username"
-    label for="password" Password
-    input type="password" name="password" id="password"
-    button type="submit" Create
+.title
+    h1 New teacher account
+.form-wrapper
+    form action="/teachers/create" method="post"
+        label for="username" Username
+        input type="text" name="username" id="username"
+        label for="password" Password
+        input type="password" name="password" id="password"
+        button type="submit" Create

@@ -4,13 +4,15 @@ div class="navigation"
         form class="logout" action="/users/logout" method="post"
             span #{user.username}
             button type="submit" Log out
-            
-h3 Edit group
-form action="/schools/#{school.id}/groups/#{group.id}/edit" method="post"
-    label for="name" Name
-    input type="text" name="name" id="name" value="#{group.name}"
-    label for="about" About
-    input type="text" name="about" id="about" value="#{group.about}"
-    label for="img" Image
-    input type="file" name="img" id="img"
-    button type="submit" Edit
+
+.title          
+    h1 Edit #{group.name}
+.form-wrapper
+    form action="/schools/#{school.id}/groups/#{group.id}/edit" method="post"
+        label for="name" Name
+        input type="text" name="name" id="name" value="#{group.name}"
+        label for="about" About
+        input type="text" name="about" id="about" value="#{group.about}"
+        label for="img" Image
+        input type="file" name="img" id="img"
+        button type="submit" Edit

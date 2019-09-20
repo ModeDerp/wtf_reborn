@@ -6,7 +6,7 @@ div class="navigation"
             button type="submit" Log out
 
 = for school <- school_groups do
-    .group-title
+    .title
         h1 #{school.school.name}
     div class="groups"
         = for group <- school.groups do

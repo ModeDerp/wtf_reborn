@@ -6,7 +6,7 @@
             button type="submit" Log out
 
 = if user.permissions == 0 do
-  .group-title
+  .title
     h1 Schools
   .schools
     = for school <- schools do

@@ -4,15 +4,17 @@ div class="navigation"
         form class="logout" action="/users/logout" method="post"
             span #{user.username}
             button type="submit" Log out
-       
-h3 Edit student
-form action="/students/#{student.id}/destroy" method="post"
-    label for="first_name" First name
-    input type="text" name="first_name" id="first_name" value="#{student.first_name}"
-    label for="last_name" Last name
-    input type="text" name="last_name" id="last_name" value="#{student.last_name}"
-    label for="about" About
-    input type="text" name="about" id="about" value='#{student.about}'
-    label for="img" Image
-    input type="file" name="img" id="img"
-    button type="submit" Edit
+
+.title
+    h1 Edit student
+.form-wrapper
+    form action="/students/#{student.id}/edit" method="post"
+        label for="first_name" First name
+        input type="text" name="first_name" id="first_name" value="#{student.first_name}"
+        label for="last_name" Last name
+        input type="text" name="last_name" id="last_name" value="#{student.last_name}"
+        label for="about" About
+        input type="text" name="about" id="about" value='#{student.about}'
+        label for="img" Image
+        input type="file" name="img" id="img"
+        button type="submit" Edit
