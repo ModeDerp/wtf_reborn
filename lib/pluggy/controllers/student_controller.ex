@@ -2,7 +2,6 @@ defmodule Pluggy.StudentController do
   require IEx
 
   alias Pluggy.Student
-  alias Pluggy.User
   alias Pluggy.UserController
   import Pluggy.Template, only: [srender: 2]
   import Plug.Conn, only: [send_resp: 3]
@@ -26,15 +25,14 @@ defmodule Pluggy.StudentController do
     end
   end
 
-  @spec update(Plug.Conn.t(), any, any) :: Plug.Conn.t()
   def update(conn, id, params) do
     Student.update(id, params)
-    redirect(conn, "/students")
+    redirect(conn, "/")
   end
 
   def destroy(conn, id) do
     Student.delete(id)
-    redirect(conn, "/fruits")
+    redirect(conn, "/")
   end
 
   defp redirect(conn, url) do
