@@ -15,6 +15,7 @@ div class="navigation"
 .quiz-container
     .quiz-image
         img src="/placeholder-images-image_large.png"
+        .quiz-counter
     .quiz-sidebar
         .quiz-answers
         .quiz-next onclick="nextGuess()"

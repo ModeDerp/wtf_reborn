@@ -2,7 +2,7 @@
 *{
 	margin: 0;
 	padding: 0;
-	font-family: sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 html, body{
@@ -46,14 +46,21 @@ html, body{
 	padding: 20px;
 	box-sizing: border-box;
 	display: flex;
-	background-color: #4899F3;
+	background-color: #484848;
+	justify-content: center;
+	box-shadow: 0 5px 5px lightgray;
 }
 
 .navigation h1{
+	margin-top: -3px;
 	height: 100%;
 	font-size: 3em;
 	color: white;
-	font-family: sans-serif;
+	text-shadow: 3px 3px black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .logout {
@@ -65,7 +72,7 @@ html, body{
 }
 
 .logout span{
-	color: #4899F3;
+	color: #B160FF;
 	padding: 10px;
 	font-size: 1.25em;
 	margin-right: 20px;
@@ -75,7 +82,7 @@ html, body{
 .logout button {
 	height: 100%;
 	width: 100px;
-	background-color: #4899F3;
+	background-color: #484848;
 	border: none;
 	color: white;
 	font-size: 1.25em;
@@ -96,8 +103,10 @@ html, body{
 .groups > div{
 	width: 200px;
 	height: 200px;
-	background-color: #C2E0FA;
+	background-color: #484848;
 	margin-right: 20px;
+	border-radius: 15px;
+	overflow: hidden;
 }
 
 .group-name{
@@ -119,7 +128,7 @@ html, body{
 .group-controls{
 	width: 100%;
 	height: 70px;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -133,7 +142,7 @@ html, body{
 .group-controls button{
 	color: white;
 	border: none;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	font-size: 1em;
 }
 
@@ -162,8 +171,9 @@ html, body{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	color: #4899F3;
+	color: #484848;
 	flex-direction: column;
+	font-size: 1.5em;
 }
 
 .students{
@@ -175,8 +185,10 @@ html, body{
 
 .student{
 	width: 200px;
-	background-color: #C2E0FA;
+	background-color: #484848;
 	margin-right: 20px;
+	border-radius: 15px;
+	overflow: hidden;
 }
 
 .student-img{
@@ -208,7 +220,7 @@ html, body{
 .student-controls{
 	width: 100%;
 	height: 70px;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -222,7 +234,7 @@ html, body{
 .student-controls button{
 	color: white;
 	border: none;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	font-size: 1em;
 }
 
@@ -243,13 +255,15 @@ html, body{
 	color: white;
 	text-decoration: none;
 	font-size: 2em;
-	background-color: #C2E0FA;
+	background-color: #484848;
 	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	border-radius: 15px;
+	overflow: hidden;
 }
 
 .student-add a:first-child{
@@ -266,8 +280,10 @@ html, body{
 
 .teacher{
 	width: 200px;
-	background-color: #C2E0FA;
+	background-color: #484848;
 	margin-right: 20px;
+	border-radius: 15px;
+	overflow: hidden;
 }
 
 .teacher-img{
@@ -277,10 +293,15 @@ html, body{
 	box-sizing: border-box;
 }
 
-.teacher-img > img{
+.teacher-img > p{
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	text-decoration: none;
+	font-size: 2em;
 }
 
 .teacher-name{
@@ -299,7 +320,7 @@ html, body{
 .teacher-controls{
 	width: 100%;
 	height: 70px;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -313,7 +334,7 @@ html, body{
 .teacher-controls button{
 	color: white;
 	border: none;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	font-size: 1em;
 }
 
@@ -326,7 +347,7 @@ html, body{
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	height: 270px;
+	height: 230px;
 	width: 200px;
 }
 
@@ -334,13 +355,15 @@ html, body{
 	color: white;
 	text-decoration: none;
 	font-size: 2em;
-	background-color: #C2E0FA;
+	background-color: #484848;
 	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	border-radius: 15px;
+	overflow: hidden;
 }
 
 .teacher-add a:first-child{
@@ -357,8 +380,10 @@ html, body{
 .schools > div{
 	width: 200px;
 	height: 200px;
-	background-color: #C2E0FA;
+	background-color: #484848;
 	margin: 20px;
+	border-radius: 15px;
+	overflow: hidden;
 }
 
 .school-name{
@@ -380,7 +405,7 @@ html, body{
 .school-controls{
 	width: 100%;
 	height: 70px;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -394,7 +419,7 @@ html, body{
 .school-controls button{
 	color: white;
 	border: none;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	font-size: 1em;
 }
 
@@ -442,7 +467,7 @@ html, body{
 }
 
 .quiz-answer{
-	background-color: #4899F3;
+	background-color: #484848;
 	padding: 15px;
 	margin-bottom: 15px;
 	border-radius: 5px;
@@ -454,12 +479,19 @@ html, body{
 
 .quiz-next{
 	height: 50px;
-	background-color: #4899F3;
+	background-color: #B160FF;
 	border-radius: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: white;
+}
+
+.quiz-counter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
 }
 
 .correct{
@@ -468,6 +500,10 @@ html, body{
 
 .incorrect{
 	background-color: red;
+}
+
+.blue{
+	background-color: #4899F3;
 }
 
 /* FORM STYLING */

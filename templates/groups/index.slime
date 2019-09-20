@@ -29,9 +29,7 @@ div class="navigation"
     = for teacher <- teachers do
       .teacher
         .teacher-img
-          img src="/placeholder-images-image_large.png"
-        .teacher-name
-            a href="/teachers/#{teacher.id}" #{teacher.username}
+          p #{teacher.username}
         = if user.permissions == 0 do
             .teacher-controls
                 a href="/teachers/#{teacher.id}/edit" EDIT
